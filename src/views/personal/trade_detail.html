@@ -1,0 +1,99 @@
+<div class="scrollable page trade_detail">
+<!-- 内容 -->
+  <div class="scrollable-content">
+    
+    <header class="header common_header">
+      <a href="javascript:history.back();">
+        <div class="back">
+          <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+      </a>
+
+      <a href="{{(buttonflag == 0 || buttonflag == 1) ? '#/personal/trade_returns' : 'javascript:void(0)'}}/{{detail.bUTTONFLAG}}/{{transerialnum}}{{orderId}}/{{shopId}}/{{detail.oRDERSUM}}" class="confirm_btn" ng-click = "returnOrder()">退货</a>
+      <div class="title">我的交易详情</div>
+    </header>
+    
+    <div class="trade_info">
+    
+      <div class="trade_total">
+        <div class="key">交易金额</div>
+        <div class="value" ng-bind = "detail.oRDERSUM"></div>
+      </div>
+      <div class="info">
+        <div class="key">商户</div>
+        <div class="value" ng-bind = "detail.cUSTNAME"></div>
+      </div>
+      <div class="info">
+        <div class="key">商品</div>
+        <div class="value" ng-bind = "detail.gOODNAME"></div>
+      </div>
+      <div class="info">
+        <div class="key">交易日期</div>
+        <div class="value" ng-bind = "detail.tDATE"></div>
+      </div>
+      <div class="info">
+        <div class="key">交易时间</div>
+        <div class="value" ng-bind = "detail.tTIME"></div>
+      </div>
+      <div class="info">
+        <div class="key">总金额</div>
+        <div class="value" ng-bind = "detail.gOODSUM"></div>
+      </div>
+      <div class="info">
+        <div class="key red_text">电子抵扣券</div>
+        <div class="value red_text" ng-bind = "detail.eCOUPON_SUM"></div>
+      </div>
+      <div class="info">
+        <div class="key red_text">积分抵扣</div>
+        <div class="value red_text" ng-bind = "detail.pOINT2VALUE"></div>
+      </div>
+      <div class="info">
+        <div class="key">交易卡号</div>
+        <div class="value" ng-bind = "detail.oCARDNO"></div>
+      </div>
+      <div class="info">
+        <div class="key">交易方式</div>
+        <div class="value" ng-bind = "detail.tRANSTYPE"></div>
+      </div>
+      <div class="info">
+        <div class="key">订单编号</div>
+        <div class="value" ng-bind = "detail.oRDERNO"></div>
+      </div>
+      
+    </div>
+    
+    <ul class="thumb_list business">
+      <li>
+        <a href="#/business/index">
+          <img class="left" ng-src="{{storeinfo.storelogourl}}">
+          <div class="right">
+          
+            <div class="top large">{{storeinfo.storename}}</div>
+            
+            <div class="middle">
+              <div class ="stars">
+				<div class = "star" ng-repeat = "i in starArray"></div>
+				<div class = "half"></div>
+              </div>
+            </div>
+            
+            <!-- 商圈   行业小类/行业大类 -->
+            <div class="bottom small gray"> {{storeinfo.busidivision1}} {{storeinfo.tradetype1}}/{{storeinfo.broadtradetype1}}
+            </div>
+            <div class="right_bottom small light_gray">{{storeinfo.distance}}{{storeinfo.unit}}</div>
+            <div class="other_info">
+              <div class="top none icon_yi" id = "yi_div"></div>
+              <div class="top none icon_shan" id = "shan_div"></div>
+              <div class="top none icon_ji" id = "ji_div"></div>
+              <div class="top none icon_fen" id = "fen_div"></div>
+              <div class="middle small avg_price">{{storeinfo.avgPrice / 100 | number: 2}}元/人</div>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+    
+    
+  </div><!--  scrollable content -->
+</div>

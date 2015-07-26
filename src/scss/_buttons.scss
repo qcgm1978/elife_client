@@ -1,0 +1,24 @@
+
+.img_btn {
+  display: inline-block;
+  padding: 4px;
+  padding-top: 22px;
+  text-align: center;
+  line-height: 12px;
+  font-size: 12px;
+  // height: 38px;
+  border: none;
+  background-size: 16px 18px;
+  color: white;
+}
+
+.img_btn.location_btn{
+  background-image: url(img/index_location.png) ;
+  background-position: 50% 4px;
+  background-repeat: no-repeat;
+}
+.img_btn.qr_btn{
+  background-image: url(img/index_qr.png) ;
+  background-position: 50% 4px;
+  background-repeat: no-repeat;
+}

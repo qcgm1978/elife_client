@@ -1,0 +1,46 @@
+<div class="scrollable page pay_orders">
+<!-- 内容 -->
+  <div class="scrollable-content">
+    
+    <header class="header common_header">
+      <a href="javascript:history.back();" ng-click="clearScope()">
+        <div class="back">
+          <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+      </a>
+      <div class="title">app支付</div>
+    </header>
+
+    <div class="sum-wrap">
+      <div class="i">￥</div>
+      <div class="input-wrap">
+        <input type="number" ng-model="total_money" placeholder="请输入服务人员提供的消费金额"/>
+      </div>
+      
+    </div>
+
+    <div class="menu_list">
+
+      <a href="#/personal/pay_e_coupon">
+        <div class="item">
+          <div class="name"><div class="icon favor_check_icon"></div>电子券</div>
+          <div class="price"><span ng-show="ECoupons"></span>￥{{ec_price}}元</div>
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </a>
+      <div>
+        <div class="item">
+          <div class="name">还需支付</div>
+          <div class="price">￥{{total_money-ec_price}}元</div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="red_confirm_btn pay_btn" ng-click="submitOrder()">提交订单</div>
+    
+  </div><!--  scrollable content -->
+</div>

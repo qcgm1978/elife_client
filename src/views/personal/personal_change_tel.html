@@ -1,0 +1,70 @@
+<div class="scrollable page personal_change_tel">
+  <div class="scrollable-content">
+  <!-- 页头 -->
+    <header class="header common_header ">
+      <a href="javascript:history.back();">
+        <div class="back">
+        <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+      </a>
+      <div class="confirm_btn red_text" ng-click="next_step=true" ng-show="!next_step">下一步</div>
+      <div class="confirm_btn red_text"  ng-show="next_step" ui-turn-on="modify_success_modal">提交</div>
+      <div class="title">修改手机号</div>
+    </header>
+  <!-- 第一步 -->
+    <div class="first_step" ng-hide="next_step">
+      <div class="change_tel_item">
+        <div>原手机号</div>
+        <form name="myForm" >
+        <input type="number"  name="input" class="num" ng-model="num1" placeholder="请输入手机号"/>
+        </form>
+        <span class="error" ng-show="!myForm.input.$valid" >请输入正确的电话号码</span>
+       
+      </div>
+
+      <div class="change_tel_item">
+        <input type="password" placeholder="请输入密码"/>
+        <div>密码</div>
+      </div>
+      <div class="light_blue_text fr">忘记密码</div>
+
+    </div>
+    <!-- 第二步 -->
+    <div class="second_step" ng-hide="!next_step">
+      <div class="change_tel_item">
+        <div>手机号</div>
+        <form name="myForm1" >
+        <input type="number"  name="input1" class="num1" ng-model="num2" placeholder="请输入手机号"/>
+        </form>
+        <span class="error" ng-show="!myForm1.input1.$valid" >请输入正确的电话号码</span>
+       
+      </div>
+
+      <div class="change_tel_item">
+        <input type="text" placeholder="请输入验证码"/>
+        <div>验证码</div>
+
+        <div class="red_text verification_code">获取验证码</div>
+      </div>
+    
+
+    </div>
+  </div>
+
+  <div ui-content-for="modals">
+    <div class="modal  ng-scope alert_modal " ui-if="modify_success_modal" ui-state="modify_success_modal" >
+      <div class="modal-backdrop in" ui-turn-off="modify_success_modal"></div>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="top" ui-turn-off="modify_success_modal">
+            <div class="customers_praise_icon praise_icon "></div>
+            <div>修改成功</div>
+          </div>
+          <div class="bottom " ui-turn-off="modify_success_modal">确定</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

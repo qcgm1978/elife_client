@@ -1,0 +1,127 @@
+<div class="scrollable page card_offer">
+    <!-- 内容 -->
+    <div class="scrollable-content">
+
+        <!-- 头部栏 -->
+        <header class="header common_header">
+            <a href="javascript:history.back();" class="return_btn">
+                <div class="back">
+                    <div class="back_arrow"></div>
+                    <div>返回</div>
+                </div>
+            </a>
+
+            <div ng-class="{'favorite':bankInfo.fav_status=='0', 'favorite_choose':bankInfo.fav_status=='1'}"
+                 ng-click="addBankFavor()"></div>
+            <div class="share" ng-click="share({'pft_code':'{{id}}','share_type':'bankdiscount'})"></div>
+            <div class="title">工行卡优惠详情</div>
+        </header>
+
+        <!-- 顶部广告图片 -->
+        <div class="top_face">
+            <img ng-src="{{parseImageUrl(bankInfo.image_url)}}" fallback-src="{{defaultImgUrl}}" alt="没有找到图片">
+        </div>
+
+        <!-- 优惠电子券 -->
+        <div class="coupon">
+            <div class="container">
+                <div class="title" ng-bind="bankInfo.promotions_titl"></div>
+                <div class="info title" ng-bind="bankInfo.promotions_title"></div>
+                <div class="info">有效期：<span ng-bind="bankInfo.start_date"></span>~<span
+                        ng-bind="bankInfo.end_date"></span></div>
+                <a href="#/discount/comment/{{id}}/{{'Bank'}}">
+                    <div class="coupon_button">点评</div>
+                </a>
+            </div>
+        </div>
+        <div class="coupon_desc">
+            <p>使用须知</p>
+
+            <p>1、本券有效期为<span ng-bind="bankInfo.start_date"></span>~<span ng-bind="bankInfo.end_date"></span>。</p>
+
+            <p ng-show="bankInfo.use_explain">2、<span ng-bind="bankInfo.content"></span>。</p>
+        </div>
+
+        <!-- 网友点评 -->
+        <div class="title_section review" ng-show="count>0">
+            <a href="#/review/index/{{id}}/{{'Bank'}}">
+                <div class="section_header">
+                    <div class="title">网友点评（<span ng-bind="count"></span>）</div>
+                    <div class="right_arrow" ng-show="count > 1"></div>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+
+            <div class="content line_break">
+                <div class="img_wrap">
+                    <img src="images/portrait.png" src="{{parseImageUrl(commentList.image_url)}}"
+                         src="{{defaultImgUrl}}" src="{{defaultImgUrl}}">
+                </div>
+                <div class="right">
+                    <div class="title" ng-bind="commentList.nick_name"></div>
+                    <span ng-repeat="star in stars" class="star_{{star.type}}"></span>
+
+                    <div class="desc">
+                        <span ng-bind="::commentList.content" class="line_break"></span>
+                        <span ng-show="showContent" ng-bind="::commentList.more" class="line_break"></span>
+
+                        <span class="light_blue_text" ng-show="::commentList.longEnough"
+                              ng-click="showContent = !showContent"><span ng-show="!showContent">查看全文</span><span
+                                ng-show="showContent">收起</span><i class="fa fa-chevron-down transition"
+                                                                  ng-class="{rotate180:showContent}"></i></span>
+                    </div>
+                    <a href="#/review/album" ng-show="imagelist.length > 0">
+                        <ul>
+                            <li ng-repeat="image in imagelist"><img src="{{image.review_image_url}}" alt=""></li>
+                        </ul>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="title_section apply_store">
+            <div class="section_header" ng-show="bankStoreList.length == 1">
+                <div class="title">适用门店</div>
+            </div>
+
+            <a href="#/business/bank_available_store/{{id}}/{{'BANK'}}" ng-show="bankStoreList.length != 1">
+                <div class="section_header">
+                    <div class="title">适用门店（<span ng-bind="bankStoreList.length"></span>家）</div>
+                    <div class="right_arrow" ng-show="bankStoreList.length>1"></div>
+                </div>
+            </a>
+
+            <ul class="thumb_list">
+                <li ng-repeat="busiStore in bankStoreList | limitTo:1">
+                    <a href="#/business/index/{{busiStore.store_code}}">
+                        <img class="left"
+                             lazy-img="{{parseImageUrl(busiStore.image_url)}}" src="{{defaultImgUrl}}">
+
+                        <div class="right">
+                            <div class="top large">{{busiStore.store_name | limitTo :10}}<span
+                                    ng-show="busiStore.store_name.length>10">...</span></div>
+                            <div class="middle">
+                                <div class="stars">
+                                    <div ng-repeat="star in busiStore.levels" class="star_{{star.type}}"></div>
+                                </div>
+                            </div>
+                            <div class="bottom small gray">
+                                {{busiStore.bottomContent}}
+                            </div>
+                            <div class="right_bottom small light_gray">{{busiStore.distance}}{{busiStore.unit}}</div>
+                            <div class="other_info">
+                                <div ng-repeat="role in busiStore.new_discount_role" class="top discount_icon {{role}}">
+                                </div>
+
+                                <div class="middle small avg_price" ng-bind="busiStore.average_price">元/人</div>
+                            </div>
+                        </div>
+                    </a>
+
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+</div>

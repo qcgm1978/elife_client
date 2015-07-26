@@ -1,0 +1,76 @@
+<div class="scrollable page trade_list">
+<!-- 内容 -->
+  <div class="scrollable-content">
+    
+    <header class="header common_header">
+      <a href="javascript:history.back();">
+        <div class="back">
+          <div class="back_arrow"></div>
+          <div>返回</div>
+        </div>
+      </a>
+      <div class="title">我的交易明细</div>
+    </header>
+
+    <div class="month_picker" ui-toggle="listFilter" ui-class="{open:listFilter}">
+      <div class="month" ng-bind = "date"> </div>
+      <i class="fa fa-caret-down" ></i>
+    </div> 
+    
+    <div class="drop_down_group" ui-state="listFilter" ui-show="listFilter">
+      <div class="side_list_tab">
+        <ui-state id="sideTab1" default="1"></ui-state>
+        <ul class="tabs">
+          <li class="tab tab_left selected" ui-set="{'sideTab1': 1}" ui-class="{'selected': sideTab1==1}">2013年</li>
+          <li class="tab tab_left" ui-set="{'sideTab1': 2}" ui-class="{'selected': sideTab1==2}">2014年</li>
+          <li class="tab tab_left" ui-set="{'sideTab1': 3}" ui-class="{'selected': sideTab1==3}">2015年</li>
+        </ul>
+        <div class="tab_contents">
+          <ul class="filter_choices" ui-if="sideTab1 == 1">
+            <li ng-repeat = "month in months" ng-init = "year = 2013" ng-click = "listReq(year, month.num)">
+             	{{month.num}}月
+            </li>
+          </ul>
+          
+          <ul class="filter_choices" ui-if="sideTab1 == 2">
+          	<li ng-repeat = "month in months" ng-init = "year = 2014" ng-click = "listReq(year, month.num)">
+             	{{month.num}}月
+            </li>
+          </ul>
+          
+          <ul class="filter_choices" ui-if="sideTab1 == 3">
+          	<li ng-repeat = "month in months" ng-init = "year = 2015" ng-click = "listReq(year, month.num)">
+             	{{month.num}}月
+            </li>
+          </ul>
+          
+        </div> <!-- end of tab contents -->
+      </div> <!-- end of side list tab -->
+      <div class="mask modal" ui-if="listFilter" ui-turn-off="listFilter" ></div>
+    </div> <!-- end of drop down group -->
+    <div class="list">
+      <div class="title">
+        <div class="col1">商品名称/订单编号</div>
+        <div class="col2">交易金额/交易日期</div>
+      </div>
+      
+      <ul>
+        <li> 
+         	<!-- 页面跳转时传递三个参数，orderId和shopId用于上主机查交易详情，同时shopId也用于从数据库查门店信息 -->
+         	<a href="#/personal/trade_detail/{{item.transerialnum}}/{{item.orderId}}/{{item.shopId}}" class="item" ng-repeat = "item in items" >
+            <div class="col1">
+              <div class="name" ng-bind = "item.saccname"></div>
+              <div class="number" ng-bind = "item.orderId"></div>
+            </div>
+            <div class="col2">
+              <div class="money" ng-bind = "item.totalAmount / 100 | number: 2"></div>
+              <div class="time" ng-bind = "item.orderDate"></div>
+            </div>
+            <i class="fa fa-angle-right indicator"></i>
+          </a>
+        </li>
+      </ul>
+  
+    </div>  
+  </div><!--  scrollable content -->
+</div>
